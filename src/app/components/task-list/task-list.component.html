@@ -1,7 +1,13 @@
-<div *ngFor="let task of tasks">
-    <h3>{{ task.title }}</h3>
-    <p>{{ task.description }}</p>
-    <small>Due: {{ task?.dueDate | date }}</small>
-    <button (click)="deleteTask(task.id)">Delete</button>
-    <!-- Edit functionality can be implemented in a similar fashion -->
+<div class="product-container flex flex-col w-full md:flex-row gap-2 flex-wrap overflow-scroll !bg-transparent">
+    <ng-container *ngFor="let task of tasks; let i = index">
+        <div
+            class="product-item flex flex-col flex-1 border-2 border-solid border-gray-500 p-1 shadow-md hover:bg-gray-200 relative">
+            <span>Position: {{i+1}}</span>
+            <span>Id: {{ task.id }}</span>
+            <span>Name: {{ task.title }}</span>
+            <span>Description: {{ task.description }}</span>
+            <small>Due: {{ task?.dueDate | date }}</small>
+            <button class="border-2 border-solid border-red-500 p-2 rounded" (click)="deleteTask(task.id)">Delete</button>
+        </div>
+    </ng-container>
 </div>

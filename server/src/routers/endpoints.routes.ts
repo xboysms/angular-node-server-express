@@ -12,7 +12,7 @@ interface Task {
   id: number;
   title: string;
   description: string;
-  dueDate: string;
+  dueDate: Date;
 }
 let tasks: Task[] = []; // Dummy in-memory task store
 
@@ -48,7 +48,7 @@ router.post('/addTask', (req, res: any) => {
   if (!title || !description || !dueDate) {
     return res.status(400).json({ error: 'All fields are required' });
   }
-  const newTask: Task = { id: Date.now(), title, description, dueDate };
+  const newTask: Task = { id: Date.now(), title, description, dueDate: new Date() };
   tasks.push(newTask);
   res.status(201).json(newTask);
 });
